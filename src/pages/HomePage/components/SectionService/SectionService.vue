@@ -1,5 +1,11 @@
 <template>
-    <section class="bg-white py-10">
+    <section
+        class="pt-10 bg-[#F5F8FD] bg-cover"
+        style="
+            background-image: url('https://ytetot.monamedia.net/wp-content/uploads/2023/09/bg-sv.png');
+            background-position: bottom center;
+        "
+    >
         <div class="max-w-[1120px] mx-auto px-4 flex flex-col md:flex-row items-center gap-10">
             <div class="w-full md:w-1/2 space-y-8">
                 <p class="text-gray-600 text-lg leading-relaxed">
@@ -30,7 +36,12 @@
             </div>
 
             <div class="w-full md:w-1/2 relative">
-                <img :src="doctor" alt="Bác sĩ" class="w-full max-w-md mx-auto object-contain" />
+                <div class="relative z-10">
+                    <img :src="doctor" alt="Bác sĩ" class="w-full max-w-md mx-auto object-contain" />
+                </div>
+                <div class="absolute top-0 right-0 z-0">
+                    <img :src="bg" alt="Bác sĩ" />
+                </div>
             </div>
         </div>
     </section>
@@ -40,4 +51,5 @@
 import doctor from '@/assets/img/bacsi.png';
 import icon1 from '@/assets/img/icon-ctb.png';
 import icon2 from '@/assets/img/icon-ctb2.png';
+import bg from '@/assets/img/bg-image-man.png';
 </script>

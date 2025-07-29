@@ -1,5 +1,5 @@
 <template>
-    <div class="items-center justify-center text-center">
+    <div class="items-center justify-center text-center mt-5">
         <p class="text-teal-500">Cam Kết Dịch Vụ Chất Lượng Tốt nhất</p>
         <h1 class="font-semibold text-[40px]">Cơ Sở Vật Chất</h1>
         <p>
@@ -8,7 +8,7 @@
             pháp tối ưu để giúp cải thiện sức khỏe răng miệng, tạo nụ cười tự tin cho <br />
             mọi khách hàng.
         </p>
-        <QuanlityServiceSlider />
+        <QuanlityServiceSlider class="mt-8" />
     </div>
 </template>
 <script setup>

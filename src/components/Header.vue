@@ -1,5 +1,5 @@
 <template>
-    <header class="w-full text-sm">
+    <header class="w-full text-sm sticky top-0 z-50 bg-white shadow">
         <div class="text-white flex justify-between px-3 py-4 items-center">
             <div class="relative">
                 <div
