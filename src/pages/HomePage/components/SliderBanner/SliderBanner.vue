@@ -1,5 +1,5 @@
 <template>
-    <section class="w-screen min-h-screen bg-[#b4f2f8] flex items-center px-6 md:px-20 overflow-hidden relative">
+    <section class="w-screen min-h-screen bg-[#b4f2f8] flex items-center overflow-hidden relative">
         <div
             class="flex transition-transform duration-700 ease-in-out"
             :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
@@ -7,7 +7,7 @@
             <div
                 v-for="(slide, index) in slides"
                 :key="index"
-                class="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-2 items-center gap-8"
+                class="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-2 px-6 md:px-20 items-center gap-8"
             >
                 <!-- Text -->
                 <div class="space-y-6">
