@@ -1,3 +1,4 @@
+s
 <template>
     <div class="items-center justify-center text-center">
         <h1 class="font-semibold text-4xl">Thành tựu đạt được</h1>
@@ -6,7 +7,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-gray-700">
                     <!-- Cột 1 -->
                     <div>
-                        <h1 class="font-bold text-3xl mb-4 text-red-700">10M+</h1>
+                        <h1 class="font-bold text-3xl mb-4 text-[#00d4d4]">10M+</h1>
                         <ul class="space-y-2">
                             <h3 class="font-bold text-lg mb-4">Lượt Khám Đã Thực Hiện</h3>
                             <p>
@@ -20,7 +21,7 @@
 
                     <!-- Cột 2 -->
                     <div>
-                        <h1 class="font-bold text-3xl mb-4 text-red-700">20M+</h1>
+                        <h1 class="font-bold text-3xl mb-4 text-[#00d4d4]">20M+</h1>
                         <ul class="space-y-2">
                             <h3 class="font-bold text-lg mb-4">Chuyên Gia Hàng Đầu</h3>
                             <p>
@@ -34,7 +35,7 @@
 
                     <!-- Cột 3 -->
                     <div>
-                        <h1 class="font-bold text-3xl mb-4 text-red-700">7M+</h1>
+                        <h1 class="font-bold text-3xl mb-4 text-[#00d4d4]">7M+</h1>
                         <ul class="space-y-2">
                             <h3 class="font-bold text-lg mb-4">Chi Nhánh</h3>
                             <p>
@@ -48,7 +49,7 @@
 
                     <!-- Cột 4 -->
                     <div>
-                        <h1 class="font-bold text-3xl mb-4 text-red-700">100%</h1>
+                        <h1 class="font-bold text-3xl mb-4 text-[#00d4d4]">100%</h1>
                         <ul class="space-y-2">
                             <h3 class="font-bold text-lg mb-4">Dịch Vụ Chất Lượng</h3>
                             <p>

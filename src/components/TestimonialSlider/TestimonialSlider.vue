@@ -2,13 +2,10 @@
     <section class="bg-[#2AD2C1] py-16 text-white relative overflow-hidden">
         <div class="max-w-6xl mx-auto px-4 text-center mb-12">
             <div class="flex items-start gap-6 justify-center mb-12 flex-wrap text-white max-w-6xl mx-auto">
-                <!-- Cột trái: Đánh giá -->
                 <div class="flex flex-col">
                     <p class="font-semibold text-sm uppercase tracking-wide">Đánh giá</p>
                     <h2 class="text-4xl font-bold mt-2">Đánh giá khách hàng</h2>
                 </div>
-
-                <!-- Cột phải: Mô tả -->
                 <p class="mt-2 text-white/80 leading-relaxed max-w-xl">
                     Mọi sự đóng góp của khách hàng chúng tôi sẽ ghi nhận <br />
                     và cải thiện chất lượng dịch vụ trong tương lai
@@ -17,12 +14,12 @@
         </div>
 
         <swiper
-            :modules="[Navigation]"
+            :modules="[Navigation, Autoplay]"
             navigation
+            loop
+            :autoplay="{ delay: 4000, disableOnInteraction: false }"
             :slides-per-view="1"
-            :breakpoints="{
-                768: { slidesPerView: 2 },
-            }"
+            :breakpoints="{ 768: { slidesPerView: 2 } }"
             space-between="30"
             class="max-w-6xl mx-auto px-4"
         >
@@ -50,10 +47,6 @@
                 <p class="text-gray-700 text-sm">"{{ item.feedback }}"</p>
             </swiper-slide>
         </swiper>
-
-        <!-- Nút điều hướng custom -->
-        <div class="swiper-button-prev text-white left-2 absolute top-1/2 -translate-y-1/2 z-10"></div>
-        <div class="swiper-button-next text-white right-2 absolute top-1/2 -translate-y-1/2 z-10"></div>
     </section>
 </template>
 
@@ -61,10 +54,11 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 
-import avatar1 from '@/assets/img/bacsi.png';
-import avatar2 from '@/assets/img/bacsi.png';
+import avatar1 from '@/assets/img/anh1.png';
+import avatar2 from '@/assets/img/anh2.png';
+import avatar3 from '@/assets/img/anh3.png';
 
 const testimonials = [
     {
@@ -79,6 +73,13 @@ const testimonials = [
         position: 'Trưởng phòng nhân sự',
         feedback: 'Dịch vụ chuyên nghiệp, đội ngũ tận tâm. Tôi chắc chắn sẽ giới thiệu cho bạn bè, người thân.',
         image: avatar2,
+    },
+    {
+        name: 'Hào Lê',
+        position: 'Chuyên viên tài chính',
+        feedback:
+            'Dịch vụ tại Yteto khiến tôi ấn tượng từ lần đầu tiên. Các bác sĩ tư vấn rất kỹ lưỡng và giải thích cặn kẽ về các quy trình. Tôi hoàn toàn hài lòng với kết quả điều trị .',
+        image: avatar3,
     },
 ];
 </script>

@@ -17,7 +17,6 @@
                 :key="index"
                 class="group relative rounded-xl overflow-hidden shadow-lg bg-white transition-all duration-500 hover:shadow-2xl"
             >
-                <!-- Ảnh + Overlay -->
                 <div class="relative w-full h-72 overflow-hidden">
                     <img
                         :src="service.image"
@@ -25,7 +24,6 @@
                         class="w-full h-full object-cover transition duration-500"
                     />
 
-                    <!-- Chữ hiện lên giữa khi hover -->
                     <div
                         class="absolute inset-0 flex items-center justify-center bg-white/80 text-center opacity-0 group-hover:opacity-100 transition duration-500"
                     >
@@ -35,7 +33,6 @@
                     </div>
                 </div>
 
-                <!-- Nội dung dưới -->
                 <div class="p-6 text-left">
                     <h3 class="text-xl font-bold text-[#1c2760] mb-2">
                         {{ service.title }}

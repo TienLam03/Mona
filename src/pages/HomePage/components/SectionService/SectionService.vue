@@ -8,6 +8,13 @@
     >
         <div class="max-w-[1120px] mx-auto px-4 flex flex-col md:flex-row items-center gap-10">
             <div class="w-full md:w-1/2 space-y-8">
+                <div>
+                    <span class="text-[#2AD2C1] text-base">YTETOT</span>
+                </div>
+                <span class="font-semibold text-[48px]"
+                    >Dịch Vụ Nha Khoa <br />
+                    Chuyên Nghiệp
+                </span>
                 <p class="text-gray-600 text-lg leading-relaxed">
                     Chúng tôi cung cấp trải nghiệm dịch vụ nha khoa tốt nhất, với các gói chăm sóc chuyên sâu giúp xác
                     định sức khỏe răng miệng của từng cá nhân và cung cấp báo cáo chi tiết về tình trạng nha chu, sâu

@@ -23,6 +23,9 @@
     <!-- starrt TestimonialSlider -->
     <TestimonialSlider />
     <!-- end TestimonialSlider -->
+    <!-- starrt News -->
+    <News />
+    <!-- end News-->
 </template>
 
 <script setup>
@@ -33,4 +36,5 @@ import SectionMember from './components/SectionMember/SectionMember.vue';
 import Achieved from './components/achieved/achieved.vue';
 import Commitment from '../../components/Commitment/Commitment.vue';
 import TestimonialSlider from '../../components/TestimonialSlider/TestimonialSlider.vue';
+import News from '../../components/News/News.vue';
 </script>
