@@ -1,88 +1,89 @@
 <template>
   <article 
     :id="`post-${article.id}`"
-    class="mb-8 overflow-hidden transition-all duration-500 pxl-item--archive wow fadeInUp lg:mb-12 lg:p-10 lg:rounded-3xl lg:border-2 lg:border-blue-50 animate-fadeInUp"
     :class="articleClasses"
-    style="visibility: visible; animation-name: fadeInUp;"
+    class="pxl-item--archive wow fadeInUp animate-[fadeInUp_0.8s_ease_forwards] [animation-fill-mode:both] [visibility:visible] [animation-name:fadeInUp]"
   >
     <!-- Featured Image with Date Badge -->
-    <div class="relative overflow-hidden pxl-feature pxl-item--image rounded-3xl">
+    <div class="pxl-feature pxl-item--image relative">
       <a :href="article.link" class="block">
-        <img 
-          :src="article.image" 
-          :alt="article.title"
-          :width="article.imageWidth || 885"
-          :height="article.imageHeight || 593"
-          class="object-cover w-full h-auto transition-transform duration-300 hover:scale-105 attachment-patholab-archive size-patholab-archive wp-post-image"
-          loading="lazy"
-          decoding="async"
-          :srcset="article.srcset"
-          :sizes="article.sizes || '(max-width: 885px) 100vw, 885px'"
-        />
+        <div class="relative w-full aspect-[893/598] overflow-hidden rounded-3xl bg-gray-100">
+          <img 
+            :src="article.image" 
+            :alt="article.title"
+            :width="893"
+            :height="598"
+            :srcset="article.srcset"
+            :sizes="article.sizes || '(max-width: 893px) 100vw, 893px'"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       </a>
       
-      <!-- Date Badge with Gradient Background -->
-      <span class="absolute bottom-0 left-0 flex items-center px-6 py-3 text-xl font-medium text-white item--date rounded-tr-3xl bg-gradient-to-r from-cyan-400 to-emerald-400">
-        <i class="mr-2 caseicon caseicon-calendar-1"></i>
-        &nbsp;{{ article.date }}
+      <!-- Date Badge -->
+      <span class="item--date absolute bottom-0 left-0 flex items-center px-6 py-3 text-xl font-medium text-white rounded-tr-3xl bg-gradient-to-r from-[#24B7D3] to-[#30EFAD] z-10">
+        <i class="caseicon caseicon-calendar-1 mr-2 [font-family:'Caseicon',sans-serif] before:content-['\f120']" aria-hidden="true"></i>
+        {{ article.date }}
       </span>
     </div>
 
     <!-- Article Content -->
-    <div class="relative pt-4 transition-all duration-500 pxl-item--holder lg:pt-11">
+    <div class="pxl-item--holder pt-4 lg:pt-8">
       <!-- Meta Information -->
-      <ul class="flex flex-wrap items-center p-0 pb-3 mb-3 text-sm font-semibold list-none pxl-item--meta font-chakra-petch">
+      <ul class="pxl-item--meta flex flex-wrap items-center p-0 pb-3 mb-3 text-sm font-semibold list-none [font-family:'Chakra_Petch',sans-serif]">
         <!-- Author -->
-        <li class="relative inline-block pr-3 mr-3 font-medium text-gray-500 uppercase item--author">
-          <i class="bootstrap-icons bi-person-circle text-teal-400 relative top-0.5 text-base mr-1"></i>
+        <li class="item--author relative inline-block pr-3 mr-3 font-medium text-gray-500 uppercase after:content-[''] after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:w-px after:h-3 after:bg-gray-300">
+          <i class="bootstrap-icons bi-person-circle text-[#2AD2C1] relative top-0.5 text-base mr-1 [font-family:'bootstrap-icons'] before:content-['\f4da']" aria-hidden="true"></i>
           <a 
             :href="article.authorLink" 
             :title="`Đăng bởi ${article.author}`"
             rel="author"
-            class="transition-colors text-inherit hover:text-teal-400"
+            class="transition-all duration-[250ms] [transition-timing-function:cubic-bezier(0.645,0.045,0.355,1)] text-inherit hover:text-[#2AD2C1] no-underline"
           >
             {{ article.author }}
           </a>
         </li>
         
         <!-- Categories -->
-        <li class="relative inline-block pr-3 mr-3 font-medium text-gray-500 uppercase item--category">
+        <li class="item--category relative inline-block pr-3 mr-3 font-medium text-gray-500 uppercase after:content-[''] after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:w-px after:h-3 after:bg-gray-300">
           <a 
-            v-for="(category, index) in article.categories" 
+            v-for="category in article.categories" 
             :key="category.slug"
             :href="category.link" 
             rel="tag"
-            class="inline-block px-4 py-3 mr-2 text-blue-500 transition-colors bg-blue-50 rounded-3xl hover:text-teal-400"
+            class="inline-block px-4 py-2 mr-2 text-blue-500 transition-all duration-[250ms] [transition-timing-function:cubic-bezier(0.645,0.045,0.355,1)] bg-blue-50 rounded-2xl hover:text-[#2AD2C1] no-underline text-sm"
           >
             {{ category.name }}
           </a>
         </li>
         
         <!-- Comments -->
-        <li class="relative inline-block pr-3 mr-3 font-medium text-gray-500 uppercase item-comment last:pr-0 last:mr-0">
+        <li v-if="article.commentsCount >= 0" class="item-comment relative inline-block font-medium text-gray-500 uppercase">
           <a 
-            :href="`${article.link}#comments`"
-            class="transition-colors text-inherit hover:text-teal-400"
+            :href="article.link"
+            class="transition-all duration-[250ms] [transition-timing-function:cubic-bezier(0.645,0.045,0.355,1)] text-inherit hover:text-[#2AD2C1] no-underline"
           >
-            <i class="flaticon flaticon-comment text-teal-400 relative top-0.5 text-base mr-1"></i>
+            <i class="flaticon flaticon-comment text-[#2AD2C1] relative top-0.5 text-base mr-1 [font-family:'flaticon'] before:content-['\f4ad']" aria-hidden="true"></i>
             {{ article.commentsCount }} Comments
           </a>
         </li>
       </ul>
       
       <!-- Article Title -->
-      <h2 class="clear-both mb-4 text-3xl font-semibold leading-tight tracking-wide break-words pxl-item--title font-chakra-petch text-slate-800 lg:mb-8 lg:text-5xl">
+      <h2 class="pxl-item--title mb-4 text-3xl lg:text-4xl font-semibold leading-tight tracking-wide break-words [font-family:'Chakra_Petch',sans-serif] text-slate-800">
         <a 
           :href="article.link" 
           :title="article.title"
-          class="transition-colors text-inherit hover:text-teal-400"
+          class="transition-all duration-[250ms] [transition-timing-function:cubic-bezier(0.645,0.045,0.355,1)] text-inherit hover:text-[#2AD2C1] no-underline"
         >
           {{ article.title }}
         </a>
       </h2>
       
       <!-- Article Excerpt -->
-      <div class="mb-6 leading-relaxed text-gray-600 pxl-item--excerpt lg:pr-12">
+      <div class="pxl-item--excerpt mb-6 leading-relaxed text-gray-600 text-base">
         {{ article.excerpt }}
       </div>
       
@@ -90,7 +91,8 @@
       <div class="pxl-item--readmore">
         <a 
           :href="article.link"
-          class="relative inline-flex items-center justify-center h-auto px-8 py-0 overflow-hidden text-lg font-medium text-teal-400 uppercase transition-all duration-300 bg-transparent border-none rounded-full cursor-pointer btn btn-arvhice leading-12 hover:text-teal-400 group"
+          class="btn btn-arvhice relative inline-flex items-center justify-center h-auto px-8 py-0 overflow-hidden text-lg font-medium text-[#2AD2C1] uppercase transition-all duration-300 bg-transparent border-none rounded-full cursor-pointer leading-[3rem] hover:text-[#2AD2C1] group no-underline"
+          aria-label="Đọc thêm bài viết"
         >
           Xem thêm
           <svg 
@@ -99,6 +101,7 @@
             viewBox="0 0 15 15" 
             fill="none"
             class="ml-2 transition-transform duration-300 group-hover:translate-x-1"
+            aria-hidden="true"
           >
             <path 
               d="M2.04625 14.3533L0.520081 12.8271L10.9853 2.36189H1.6102V0.181641H14.6917V13.2631H12.5114V3.88806L2.04625 14.3533Z" 
@@ -118,19 +121,11 @@ export default {
     article: {
       type: Object,
       required: true,
-      validator(value) {
-        return (
-          value &&
-          typeof value.id !== 'undefined' &&
-          typeof value.title === 'string' &&
-          typeof value.excerpt === 'string' &&
-          typeof value.link === 'string' &&
-          typeof value.image === 'string' &&
-          typeof value.date === 'string' &&
-          typeof value.author === 'string' &&
-          typeof value.authorLink === 'string' &&
-          Array.isArray(value.categories)
-        );
+      validator: (value) => {
+        const requiredFields = ['id', 'title', 'excerpt', 'link', 'image', 'date', 'author', 'authorLink'];
+        return value && 
+               requiredFields.every(field => value[field] !== undefined) &&
+               Array.isArray(value.categories);
       }
     },
     customClasses: {
@@ -143,18 +138,16 @@ export default {
       const baseClasses = [
         'post',
         `post-${this.article.id}`,
-        'type-post',
+        'post',
+        'type-post', 
         'status-publish',
         'format-standard',
         'has-post-thumbnail',
         'hentry'
       ];
       
-      // Add category classes
-      const categoryClasses = this.article.categories.map(cat => `category-${cat.slug}`);
-      
-      // Add tag classes if available
-      const tagClasses = this.article.tags ? this.article.tags.map(tag => `tag-${tag.slug}`) : [];
+      const categoryClasses = this.article.categories?.map(cat => `category-${cat.slug}`) || [];
+      const tagClasses = this.article.tags?.map(tag => `tag-${tag.slug}`) || [];
       
       return [
         ...baseClasses,
@@ -167,154 +160,20 @@ export default {
 };
 </script>
 
-<style scoped>
-/* Caseicon Font */
+<style>
+/* Font Face */
 @font-face {
   font-family: "Caseicon";
   src: url("data:application/font-woff2;charset=utf-8;base64,d09GMgABAAAAAAZ0AAsAAAAADAwAAAYkAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHFQGYACDSAqKfIVzATYCJAMcCxAABCAFhAoHIBsXCsgOJSHBwABgPDzMiLxt/v+fyGCyK1asTdAhqSF1WgG5k3eoOhNqpJ7/3WPNfMBf+MUqAADAfPCfNBQAAOBRd3L8AAA4CgAA") format("woff2");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
-/* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css?family=Chakra+Petch:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Heebo:100,200,300,400,500,600,700,800,900&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap');
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap');
 
-/* CSS Variables */
-:root {
-  --primary-color: #2AD2C1;
-  --secondary-color: #1D2864;
-  --third-color: #6F7F90;
-  --link-color: #2AD2C1;
-  --link-color-hover: #2AD2C1;
-  --gradient-color-from: #24B7D3;
-  --gradient-color-to: #30EFAD;
-}
-
-/* Caseicon Icons */
-.caseicon {
-  font-family: "Caseicon", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  display: inline-block;
-}
-
-.caseicon-calendar-1::before {
-  content: "\f120";
-}
-
-/* Font Families */
-.font-chakra-petch {
-  font-family: 'Chakra Petch', sans-serif;
-}
-
-.font-work-sans {
-  font-family: 'Work Sans', sans-serif;
-}
-
-.font-heebo {
-  font-family: 'Heebo', sans-serif;
-}
-
-/* Component Styles */
-.pxl-item--archive {
-  transition: all 0.5s ease;
-}
-
-.pxl-item--holder {
-  transition: all 0.5s ease;
-}
-
-/* Date Badge Gradient */
-.item--date {
-  background: linear-gradient(to right, var(--gradient-color-from), var(--gradient-color-to));
-  font-size: 1.125rem;
-  font-weight: 500;
-}
-
-/* Meta Styles */
-.pxl-item--meta {
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-}
-
-.pxl-item--meta li {
-  position: relative;
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  color: #6b7280;
-}
-
-.pxl-item--meta li:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1px;
-  height: 12px;
-  background-color: #e5e7eb;
-}
-
-/* WordPress specific classes */
-.attachment-patholab-archive {
-  width: 100%;
-  height: auto;
-}
-
-.size-patholab-archive {
-  max-width: 885px;
-  height: auto;
-}
-
-.wp-post-image {
-  border-radius: 1.5rem;
-}
-
-/* Link Styles */
-a {
-  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-  outline: none;
-  text-decoration: none;
-}
-
-a:hover,
-a:focus {
-  outline: none;
-  text-decoration: none;
-}
-
-/* Button Styles */
-.btn {
-  line-height: 3rem;
-  font-size: 1.125rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  color: var(--primary-color);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-arvhice {
-  color: var(--primary-color);
-}
-
-.btn:hover,
-.btn:active {
-  outline: none;
-  text-decoration: none;
-  color: var(--primary-color);
-}
-
-.btn svg path {
-  fill: var(--primary-color);
-}
-
-/* Animation */
+/* Custom Animation Keyframe */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -324,56 +183,5 @@ a:focus {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.animate-fadeInUp {
-  animation: fadeInUp 0.8s ease forwards;
-}
-
-.wow.fadeInUp {
-  animation-name: fadeInUp;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-}
-
-/* Responsive Design */
-@media (max-width: 991px) {
-  .pxl-item--archive {
-    padding: 0;
-    border-radius: 0;
-    border: none;
-  }
-  
-  .pxl-item--title {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 767px) {
-  .pxl-item--excerpt {
-    padding-right: 0;
-  }
-  
-  .pxl-item--title {
-    font-size: 1.75rem;
-  }
-}
-
-/* Bootstrap Icons Fallback */
-.bi {
-  font-family: "bootstrap-icons";
-}
-
-.bi-person-circle::before {
-  content: "\f4da";
-}
-
-/* Flaticon Fallback */
-.flaticon {
-  font-family: "flaticon";
-}
-
-.flaticon-comment::before {
-  content: "\f4ad";
 }
 </style>
