@@ -20,7 +20,7 @@
       <span
         class="absolute bottom-0 left-0 text-white text-[22px] px-[25px] py-[13px] rounded-tl-none rounded-tr-[25px] flex items-center bg-gradient-to-r from-[#24B7D3] to-[#30EFAD]"
       >
-        <i class="mr-2 caseicon caseicon-calendar-1"></i>
+        <i class="mr-2 far fa-calendar-alt"></i>
         {{ article.date }}
       </span>
     </div>

@@ -40,8 +40,8 @@
         <!-- Menu -->
         <nav class="flex justify-center flex-1">
           <ul class="flex gap-8 items-center text-[#23336A] font-semibold text-base">
-            <li><a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Trang chủ</a></li>
-            <li><a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Giới thiệu</a></li>
+            <li><a href="/" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Trang chủ</a></li>
+            <li><a href="/about" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Giới thiệu</a></li>
             <li class="relative group">
               <a href="#" class="nav-link flex items-center hover:text-[#2AD2C1] transition-colors duration-300">Dịch vụ
                 <i class="ml-1 text-xs fa-solid fa-chevron-down"></i>
@@ -57,8 +57,8 @@
               </ul>
             </li>
             <li><a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Hướng dẫn khách hàng</a></li>
-            <li><a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Kiến thức</a></li>
-            <li><a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Liên hệ</a></li>
+            <li><a href="/blog" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Kiến thức</a></li>
+            <li><a href="/contact" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Liên hệ</a></li>
           </ul>
         </nav>
         <!-- Social + Button -->
