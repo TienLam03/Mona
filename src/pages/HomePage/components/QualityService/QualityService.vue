@@ -1,7 +1,7 @@
 <template>
-    <div class="items-center justify-center text-center mt-5">
-        <p class="text-teal-500">Cam Kết Dịch Vụ Chất Lượng Tốt nhất</p>
-        <h1 class="font-semibold text-[40px]">Cơ Sở Vật Chất</h1>
+    <div class="items-center justify-center text-center py-20">
+        <p class="text-teal-500 text-lg font-medium mb-2">Cam Kết Dịch Vụ Chất Lượng Tốt nhất</p>
+        <h1 class="font-semibold text-5xl pb-4">Cơ Sở Vật Chất</h1>
         <p>
             Mục tiêu hàng đầu của chúng tôi là mang đến dịch vụ chăm sóc nha khoa <br />
             tốt nhất cho khách hàng. Chúng tôi luôn tìm kiếm và triển khai những giải <br />

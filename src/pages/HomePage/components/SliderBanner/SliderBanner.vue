@@ -1,5 +1,5 @@
 <template>
-    <section class="w-screen min-h-screen bg-[#b4f2f8] flex items-center overflow-hidden relative">
+    <section class="w-full bg-[#b4f2f8] flex items-center overflow-hidden relative">
         <div
             class="flex transition-transform duration-700 ease-in-out"
             :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
