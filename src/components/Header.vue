@@ -1,92 +1,149 @@
 <template>
-    <header class="w-full text-sm sticky top-0 z-50 bg-white shadow">
-        <div class="text-white flex justify-between px-3 py-4 items-center">
-            <div class="relative">
-                <div
-                    class="absolute top-1/2 right-0 bottom-0 z-[-1] h-[215%] w-[500%] bg-[#1D2864] transform -translate-y-1/2 skew-x-[40deg]"
-                ></div>
-                <div class="flex items-center gap-2 pr-12">
-                    <span class="font-semibold text-teal-400">HỖ TRỢ</span>
-                    <span>ĐẶT KHÁM</span>
-                    <div class="flex items-center gap-1 ml-4">
-                        <div class="bg-[#18c3b9] text-white rounded-full w-7 h-7 flex items-center justify-center">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <span>(+84) <strong>0313-728-397</strong></span>
-                    </div>
-                </div>
-            </div>
-            <div class="flex items-center gap-4 text-[#1D2864] text-sm">
-                <div class="flex items-center gap-1">
-                    <i class="text-teal-400 fas fa-envelope"></i>
-                    <span>info@themona.global</span>
-                </div>
-                <div class="flex items-center gap-1">
-                    <i class="text-teal-400 fas fa-map-marker-alt"></i>
-                    <span>1073/23 CMT8, P.7, Q.Tân Bình, TP.HCM</span>
-                </div>
-            </div>
+    <!-- Topbar: Hotline chéo trái + contact info -->
+    <div class="relative w-full bg-white">
+      <div class="flex items-center justify-between max-w-[1920px] mx-auto h-[48px]">
+        <!-- Khối xanh hình thang vuông -->
+        <div class="relative flex items-center h-full min-w-[480px] max-w-[700px] z-10"
+             style="clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%); background: #23336A;">
+          <span class="uppercase text-[#2AD2C1] font-bold tracking-wider text-base ml-6">Hỗ trợ</span>
+          <span class="ml-1 text-base font-bold tracking-wider text-white uppercase">Đặt khám</span>
+          <span class="w-8 h-8 flex items-center justify-center rounded-full bg-[#2AD2C1] text-white ml-4 mr-2">
+            <i class="text-lg fa-solid fa-phone"></i>
+          </span>
+          <a href="tel:0313728397" class="text-white text-base font-bold tracking-wide hover:text-[#2AD2C1] transition">
+            (+84) 0313-728-397
+          </a>
         </div>
-
-        <!-- Main Navigation -->
-        <div class="flex items-center justify-between px-6 py-4">
-            <!-- Logo -->
-            <div class="flex items-center gap-2">
-                <img src="/logoo.png" alt="logo" class="w-[150px] h-[70px]" />
-                <div class="leading-15"></div>
-            </div>
-
-            <!-- Menu -->
-            <nav class="flex gap-7 font-semibold text-[#1c2760] mr-[200px]">
-                <a class="pb-1 text-teal-500 border-b-2 border-teal-500" href="/">Trang chủ</a>
-                <a href="/about">Giới thiệu</a>
-                <a href="#">Dịch vụ <i class="text-xs fas fa-chevron-down"></i></a>
-                <a href="#">Hướng dẫn khách hàng</a>
-                <a href="/blog">Kiến thức</a>
-                <a href="/contact">Liên hệ</a>
-            </nav>
-
-            <div class="flex items-center gap-3">
-                <!-- Social Icons -->
-                <div class="flex gap-3">
-                    <a
-                        href="#"
-                        class="w-9 h-9 bg-[#f5f8fc] rounded-full flex items-center justify-center text-[#1c2760] hover:text-[#e6f8f4] hover:bg-[#32e6a5] transition"
-                    >
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a
-                        href="#"
-                        class="w-9 h-9 bg-[#f5f8fc] rounded-full flex items-center justify-center text-[#1c2760] hover:text-[#e6f8f4] hover:bg-[#32e6a5] transition"
-                    >
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a
-                        href="#"
-                        class="w-9 h-9 bg-[#f5f8fc] rounded-full flex items-center justify-center text-[#1c2760] hover:text-[#e6f8f4] hover:bg-[#32e6a5] transition"
-                    >
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a
-                        href="#"
-                        class="w-9 h-9 bg-[#f5f8fc] rounded-full flex items-center justify-center text-[#1c2760] hover:text-[#e6f8f4] hover:bg-[#32e6a5] transition"
-                    >
-                        <i class="fab fa-pinterest-p"></i>
-                    </a>
-                    <div class="w-px h-8 bg-gray-300"></div>
-                </div>
-                <button
-                    class="ml-4 px-4 py-2 rounded-full text-white font-semibold bg-gradient-to-r from-[#18c3b9] to-[#32e6a5] text-2xl"
-                >
-                    <i class="mr-2 fas fa-calendar-alt"></i> Đặt lịch khám
-                </button>
-            </div>
+        <!-- Contact info bên phải -->
+        <div class="flex-1 flex justify-end items-center h-full ml-[500px] gap-0 text-[#23336A] text-base font-medium">
+          <a href="mailto:info@themona.global" class="flex items-center gap-1 hover:text-[#2AD2C1] transition mr-6">
+            <i class="fa-regular fa-envelope text-[#2AD2C1] mr-1"></i>
+            info@themona.global
+          </a>
+          <span class="w-px h-4 mx-2 bg-gray-200"></span>
+          <a class="flex items-center gap-1 hover:text-[#2AD2C1] transition">
+            <i class="fa-regular fa-map text-[#2AD2C1] mr-1"></i>
+            1073/23 CMT8, P.7, Q.Tân Bình, TP.HCM
+          </a>
         </div>
+      </div>
+    </div>
+  
+    <!-- Main header: Logo, menu, social, button -->
+    <header class="w-full bg-white">
+      <div class="max-w-[1920px] mx-auto flex items-center justify-between px-2 lg:px-8 py-4">
+        <!-- Logo -->
+        <a href="/" class="flex items-center min-w-[220px]">
+          <img src="https://ytetot.monamedia.net/wp-content/uploads/2024/11/1-e1730690836792.png"
+               alt="Logo" class="object-contain w-auto h-10"/>
+        </a>
+        <!-- Menu -->
+        <nav class="flex justify-center flex-1">
+          <ul class="flex gap-8 items-center text-[#23336A] font-semibold text-base">
+            <li><a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Trang chủ</a></li>
+            <li><a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Giới thiệu</a></li>
+            <li class="relative group">
+              <a href="#" class="nav-link flex items-center hover:text-[#2AD2C1] transition-colors duration-300">Dịch vụ
+                <i class="ml-1 text-xs fa-solid fa-chevron-down"></i>
+              </a>
+              <!-- Dropdown -->
+              <ul class="absolute left-0 top-full mt-2 min-w-[210px] bg-white shadow-lg rounded py-2 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all z-30">
+                <li><a href="#" class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition">Trám Răng Thẩm Mỹ</a></li>
+                <li><a href="#" class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition">Niềng răng thẩm mỹ</a></li>
+                <li><a href="#" class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition">Nhổ Răng Khôn</a></li>
+                <li><a href="#" class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition">Vệ Sinh Răng Miệng</a></li>
+                <li><a href="#" class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition">Khám Răng Tổng Quát</a></li>
+                <li><a href="#" class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition">Điều Trị Viêm Nướu</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Hướng dẫn khách hàng</a></li>
+            <li><a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Kiến thức</a></li>
+            <li><a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Liên hệ</a></li>
+          </ul>
+        </nav>
+        <!-- Social + Button -->
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 mr-4">
+            <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F5F8FD] text-[#23336A] hover:bg-gradient-to-r hover:from-[#24B7D3] hover:to-[#30EFAD] hover:text-white transition">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F5F8FD] text-[#23336A] hover:bg-gradient-to-r hover:from-[#24B7D3] hover:to-[#30EFAD] hover:text-white transition">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F5F8FD] text-[#23336A] hover:bg-gradient-to-r hover:from-[#24B7D3] hover:to-[#30EFAD] hover:text-white transition">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F5F8FD] text-[#23336A] hover:bg-gradient-to-r hover:from-[#24B7D3] hover:to-[#30EFAD] hover:text-white transition">
+              <i class="fab fa-pinterest-p"></i>
+            </a>
+          </div>
+          <a href="#" class="inline-flex items-center px-8 h-11 rounded-full bg-gradient-to-r from-[#24B7D3] to-[#30EFAD] text-white font-semibold text-base shadow hover:opacity-90 transition">
+            <i class="mr-2 text-lg fa-regular fa-calendar-days"></i>
+            Đặt lịch khám
+          </a>
+        </div>
+      </div>
     </header>
-</template>
-
-<script>
-export default {
-    name: 'Header',
-};
-</script>
+  </template>
+  
+  <!-- FontAwesome CDN, bắt buộc để icon hoạt động -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
+  
+  <style scoped>
+  /* Navigation Link Hover Effects */
+  .nav-link {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 4px;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #2AD2C1, #30EFAD);
+    transition: width 0.4s ease-in-out;
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  /* Hover effect for text color */
+  .nav-link:hover {
+    color: #2AD2C1 !important;
+  }
+  
+  /* Animation for underline going from left to right on hover in, and right to left on hover out */
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #2AD2C1, #30EFAD);
+    transition: width 0.4s ease-in-out;
+    z-index: -1;
+  }
+  
+  .nav-link:not(:hover)::before {
+    width: 100%;
+    transition: width 0.4s ease-in-out;
+  }
+  
+  .nav-link:not(:hover)::after {
+    transition-delay: 0.1s;
+    width: 0;
+  }
+  
+  /* Ensure dropdown menu items don't have the underline effect */
+  .group ul .nav-link::after,
+  .group ul .nav-link::before {
+    display: none;
+  }
+  </style>
