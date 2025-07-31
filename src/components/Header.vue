@@ -1,9 +1,9 @@
 <template>
     <header class="w-full text-sm sticky top-0 z-50 bg-white shadow">
-        <div class="text-white flex justify-between px-3 py-4 items-center">
+        <div class="text-white flex justify-between px-3 py-4 items-center bg-[#1D2864] sm:bg-transparent">
             <div class="relative">
                 <div
-                    class="absolute top-1/2 right-0 bottom-0 z-[-1] h-[215%] w-[500%] bg-[#1D2864] transform -translate-y-1/2 skew-x-[40deg]"
+                    class="hidden xl:block absolute top-1/2 right-0 bottom-0 z-[-1] h-[215%] w-[500%] bg-[#1D2864] transform -translate-y-1/2 skew-x-[40deg]"
                 ></div>
                 <div class="flex items-center gap-2 pr-12">
                     <span class="font-semibold text-teal-400">HỖ TRỢ</span>
@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex items-center gap-4 text-[#1D2864] text-sm">
+            <div class="hidden xl:flex items-center gap-4 text-[#1D2864] text-sm">
                 <div class="flex items-center gap-1">
                     <i class="text-teal-400 fas fa-envelope"></i>
                     <span>info@themona.global</span>
@@ -32,12 +32,14 @@
         <div class="flex items-center justify-between px-6 py-4">
             <!-- Logo -->
             <div class="flex items-center gap-2">
-                <img src="/logoo.png" alt="logo" class="w-[150px] h-[70px]" />
+                <router-link to="/">
+                    <img src="/logoo.png" alt="logo" class="w-[150px] h-[70px]" />
+                </router-link>
                 <div class="leading-15"></div>
             </div>
 
             <!-- Menu -->
-            <nav class="flex gap-7 font-semibold text-[#1c2760] mr-[200px]">
+            <nav class="hidden xl:flex gap-7 font-semibold text-[#1c2760] mr-[50px]">
                 <a class="pb-1 text-teal-500 border-b-2 border-teal-500" href="/">Trang chủ</a>
                 <a href="/about">Giới thiệu</a>
                 <a href="#">Dịch vụ <i class="text-xs fas fa-chevron-down"></i></a>
@@ -46,7 +48,12 @@
                 <a href="/contact">Liên hệ</a>
             </nav>
 
-            <div class="flex items-center gap-3">
+            <!-- Icon Menu (mobile) -->
+            <button class="xl:hidden text-2xl text-[#1c2760]" @click="isOpen = !isOpen">
+                <i :class="isOpen ? 'fas fa-times' : 'fas fa-bars'"></i>
+            </button>
+
+            <div class="hidden xl:flex items-center gap-3">
                 <!-- Social Icons -->
                 <div class="flex gap-3">
                     <a

@@ -78,7 +78,7 @@ const testimonials = [
         name: 'Hào Lê',
         position: 'Chuyên viên tài chính',
         feedback:
-            'Dịch vụ tại Yteto khiến tôi ấn tượng từ lần đầu tiên. Các bác sĩ tư vấn rất kỹ lưỡng và giải thích cặn kẽ về các quy trình. Tôi hoàn toàn hài lòng với kết quả điều trị .',
+            'Dịch vụ tại Yteto khiến tôi ấn tượng từ lần đầu tiên. Các bác sĩ tư vấn rất kỹ lưỡng và giải thích cặn kẽ về các quy trình. Tôi hoàn toàn hài lòng.',
         image: avatar3,
     },
 ];

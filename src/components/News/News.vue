@@ -13,7 +13,7 @@
                 </div>
 
                 <!-- Author and Comments -->
-                <div class="px-4 py-2 flex items-center text-sm text-gray-500 border-b">
+                <div class="px-4 py-2 flex items-center text-sm text-gray-500 border-b mt-5">
                     <span class="mr-2">👤 {{ post.author }}</span>
                     <span class="mx-1">•</span>
                     <span class="text-green-500 text-xs mr-1">●</span>
