@@ -29,3 +29,9 @@
         font-family: 'Work Sans', sans-serif;
     }
 }
+
+@layer utilities {
+    .clip-polygon-custom {
+        clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
+    }
+}

@@ -8,7 +8,7 @@
         <div class="relative">
             <!-- Đăng ký nhận tin -->
             <div
-                class="px-5 py-10 rounded-2xl absolute top-[-180px] left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#24B7D3] to-[#39E2A8] w-[80rem] max-w-7xl mb-12 flex flex-col md:flex-row items-center justify-between gap-4"
+                class="w-full max-w-full xl:max-w-7xl px-5 py-10 rounded-2xl absolute top-[-180px] left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#24B7D3] to-[#39E2A8] mb-12 flex flex-col md:flex-row items-center justify-between gap-4"
             >
                 <h3 class="text-2xl font-bold text-white text-center md:text-left">Đăng ký để nhận tin tức mới nhất</h3>
                 <div class="flex gap-2 w-full md:w-auto">
@@ -26,7 +26,7 @@
             </div>
 
             <!-- Nội dung chính -->
-            <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="max-w-full xl:max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <!-- ✅ Dùng ảnh từ public (không dùng import) -->
                     <img src="/logoo.png" alt="logo" class="w-36 mb-4" />
