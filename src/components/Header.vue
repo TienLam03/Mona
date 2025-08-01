@@ -198,13 +198,13 @@
                         <i class="fab fa-pinterest-p"></i>
                     </a>
                 </div>
-                <a
-                    href="#"
+                <router-link
+                    to="/contact"
                     class="inline-flex items-center px-8 h-11 rounded-full bg-gradient-to-r from-[#24B7D3] to-[#30EFAD] text-white font-semibold text-base shadow hover:opacity-90 transition"
                 >
                     <i class="mr-2 text-lg fa-regular fa-calendar-days"></i>
                     Đặt lịch khám
-                </a>
+                </router-link>
             </div>
         </div>
     </header>
