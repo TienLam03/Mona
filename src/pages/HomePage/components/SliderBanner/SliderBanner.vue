@@ -20,11 +20,13 @@
                     <p class="text-gray-600 max-w-lg">
                         {{ slide.desc }}
                     </p>
-                    <button
-                        class="bg-[#00d4d4] text-white py-3 px-6 rounded-full font-semibold shadow hover:bg-[#00bcbc] transition"
-                    >
-                        Đặt lịch khám
-                    </button>
+                    <router-link to="/contact"
+                        ><button
+                            class="bg-[#00d4d4] text-white py-3 px-6 rounded-full font-semibold shadow hover:bg-[#00bcbc] transition"
+                        >
+                            Đặt lịch khám
+                        </button>
+                    </router-link>
                 </div>
 
                 <!-- Image -->
