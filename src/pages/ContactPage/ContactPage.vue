@@ -124,247 +124,235 @@
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            // Contact Information Data
-            contactInfo: [
-                {
-                    id: 1,
-                    title: 'Địa chỉ',
-                    type: 'address',
-                    content: '1073/23 CMT8, P.7, Q.Tân Bình, TP.HCM',
-                    link: '#'
-                },
-                {
-                    id: 2,
-                    title: 'Số điện thoại',
-                    type: 'phone',
-                    content: '(+84) 0313-728-397',
-                    link: 'tel:0313728397'
-                },
-                {
-                    id: 3,
-                    title: 'Thời gian làm việc',
-                    type: 'hours',
-                    content: ['Thứ 2 - chủ nhật', 'Từ 7:30 - 20:30']
-                }
-            ],
+<script setup>
+import { ref, computed, onMounted } from 'vue'
 
-            // Social Media Data
-            socialMedia: [
-                {
-                    id: 1,
-                    name: 'Facebook',
-                    url: '#',
-                    iconClass: 'fab fa-facebook-f',
-                    bgColor: 'bg-blue-600',
-                    hoverColor: '#1d4ed8'
-                },
-                {
-                    id: 2,
-                    name: 'Twitter',
-                    url: '#',
-                    iconClass: 'fab fa-twitter',
-                    bgColor: 'bg-blue-400',
-                    hoverColor: '#3b82f6'
-                },
-                {
-                    id: 3,
-                    name: 'Instagram',
-                    url: '#',
-                    iconClass: 'fab fa-instagram',
-                    bgColor: 'bg-pink-600',
-                    hoverColor: '#be185d'
-                },
-                {
-                    id: 4,
-                    name: 'Pinterest',
-                    url: '#',
-                    iconClass: 'fab fa-pinterest-p',
-                    bgColor: 'bg-red-600',
-                    hoverColor: '#dc2626'
-                }
-            ],
-
-            // Form Fields Configuration
-            formFields: [
-                {
-                    name: 'name',
-                    type: 'text',
-                    placeholder: 'Họ tên*',
-                    icon: 'fas fa-user',
-                    required: true,
-                    fullWidth: false
-                },
-                {
-                    name: 'email',
-                    type: 'email',
-                    placeholder: 'Email*',
-                    icon: 'fas fa-envelope',
-                    required: true,
-                    fullWidth: false
-                },
-                {
-                    name: 'phone',
-                    type: 'tel',
-                    placeholder: 'Số điện thoại*',
-                    icon: 'fas fa-phone',
-                    required: true,
-                    fullWidth: false
-                },
-                {
-                    name: 'subject',
-                    type: 'text',
-                    placeholder: 'Chủ đề*',
-                    icon: 'fas fa-map-marker-alt',
-                    required: true,
-                    fullWidth: false
-                },
-                {
-                    name: 'appointmentDate',
-                    type: 'date',
-                    placeholder: '',
-                    icon: 'fas fa-calendar-alt',
-                    required: true,
-                    fullWidth: true
-                }
-            ],
-
-            // Form data for appointment booking
-            formData: {
-                name: '',
-                email: '',
-                phone: '',
-                subject: '',
-                appointmentDate: ''
-            },
-
-            isSubmitting: false
-        };
+// Reactive data
+const contactInfo = ref([
+    {
+        id: 1,
+        title: 'Địa chỉ',
+        type: 'address',
+        content: '1073/23 CMT8, P.7, Q.Tân Bình, TP.HCM',
+        link: '#'
     },
+    {
+        id: 2,
+        title: 'Số điện thoại',
+        type: 'phone',
+        content: '(+84) 0313-728-397',
+        link: 'tel:0313728397'
+    },
+    {
+        id: 3,
+        title: 'Thời gian làm việc',
+        type: 'hours',
+        content: ['Thứ 2 - chủ nhật', 'Từ 7:30 - 20:30']
+    }
+])
 
-    computed: {
-        // Computed property để validate form
-        isFormValid() {
-            return this.formFields.every(field => {
-                if (!field.required) return true;
-                const value = this.formData[field.name];
-                if (!value || !value.toString().trim()) return false;
-                
-                // Special validation for email
-                if (field.type === 'email') {
-                    return this.isValidEmail(value);
-                }
-                
-                // Special validation for date
-                if (field.type === 'date') {
-                    const selectedDate = new Date(value);
-                    const today = new Date();
-                    today.setHours(0, 0, 0, 0);
-                    return selectedDate >= today;
-                }
-                
-                return true;
-            });
-        },
+const socialMedia = ref([
+    {
+        id: 1,
+        name: 'Facebook',
+        url: '#',
+        iconClass: 'fab fa-facebook-f',
+        bgColor: 'bg-blue-600',
+        hoverColor: '#1d4ed8'
+    },
+    {
+        id: 2,
+        name: 'Twitter',
+        url: '#',
+        iconClass: 'fab fa-twitter',
+        bgColor: 'bg-blue-400',
+        hoverColor: '#3b82f6'
+    },
+    {
+        id: 3,
+        name: 'Instagram',
+        url: '#',
+        iconClass: 'fab fa-instagram',
+        bgColor: 'bg-pink-600',
+        hoverColor: '#be185d'
+    },
+    {
+        id: 4,
+        name: 'Pinterest',
+        url: '#',
+        iconClass: 'fab fa-pinterest-p',
+        bgColor: 'bg-red-600',
+        hoverColor: '#dc2626'
+    }
+])
 
-        // Get required field names for validation messages
-        requiredFields() {
-            return this.formFields.filter(field => field.required);
+const formFields = ref([
+    {
+        name: 'name',
+        type: 'text',
+        placeholder: 'Họ tên*',
+        icon: 'fas fa-user',
+        required: true,
+        fullWidth: false
+    },
+    {
+        name: 'email',
+        type: 'email',
+        placeholder: 'Email*',
+        icon: 'fas fa-envelope',
+        required: true,
+        fullWidth: false
+    },
+    {
+        name: 'phone',
+        type: 'tel',
+        placeholder: 'Số điện thoại*',
+        icon: 'fas fa-phone',
+        required: true,
+        fullWidth: false
+    },
+    {
+        name: 'subject',
+        type: 'text',
+        placeholder: 'Chủ đề*',
+        icon: 'fas fa-map-marker-alt',
+        required: true,
+        fullWidth: false
+    },
+    {
+        name: 'appointmentDate',
+        type: 'date',
+        placeholder: '',
+        icon: 'fas fa-calendar-alt',
+        required: true,
+        fullWidth: true
+    }
+])
+
+const formData = ref({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    appointmentDate: ''
+})
+
+const isSubmitting = ref(false)
+
+// Computed properties
+const isFormValid = computed(() => {
+    return formFields.value.every(field => {
+        if (!field.required) return true
+        const value = formData.value[field.name]
+        if (!value || !value.toString().trim()) return false
+        
+        // Special validation for email
+        if (field.type === 'email') {
+            return isValidEmail(value)
         }
-    },
+        
+        // Special validation for date
+        if (field.type === 'date') {
+            const selectedDate = new Date(value)
+            const today = new Date()
+            today.setHours(0, 0, 0, 0)
+            return selectedDate >= today
+        }
+        
+        return true
+    })
+})
 
-    methods: {
-        async submitForm() {
-            // Validate form
-            if (!this.validateForm()) {
-                return;
-            }
+const requiredFields = computed(() => {
+    return formFields.value.filter(field => field.required)
+})
 
-            this.isSubmitting = true;
+// Methods
+const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+}
 
-            try {
-                // Simulate API call
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                
-                // Success message
-                this.showNotification('Đặt lịch thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.', 'success');
-                
-                // Reset form
-                this.resetForm();
-                
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                this.showNotification('Có lỗi xảy ra, vui lòng thử lại sau.', 'error');
-            } finally {
-                this.isSubmitting = false;
-            }
-        },
-
-        validateForm() {
-            // Sử dụng computed property để kiểm tra
-            if (!this.isFormValid) {
-                // Tìm field đầu tiên bị lỗi và hiển thị thông báo
-                const invalidField = this.requiredFields.find(field => {
-                    const value = this.formData[field.name];
-                    if (!value || !value.toString().trim()) {
-                        this.showNotification(`Vui lòng nhập ${field.placeholder.replace('*', '')}`, 'error');
-                        return true;
-                    }
-                    
-                    if (field.type === 'email' && !this.isValidEmail(value)) {
-                        this.showNotification('Email không hợp lệ', 'error');
-                        return true;
-                    }
-                    
-                    if (field.type === 'date') {
-                        const selectedDate = new Date(value);
-                        const today = new Date();
-                        today.setHours(0, 0, 0, 0);
-                        if (selectedDate < today) {
-                            this.showNotification('Ngày hẹn phải từ hôm nay trở đi', 'error');
-                            return true;
-                        }
-                    }
-                    
-                    return false;
-                });
-                
-                return false;
+const validateForm = () => {
+    if (!isFormValid.value) {
+        // Tìm field đầu tiên bị lỗi và hiển thị thông báo
+        const invalidField = requiredFields.value.find(field => {
+            const value = formData.value[field.name]
+            if (!value || !value.toString().trim()) {
+                showNotification(`Vui lòng nhập ${field.placeholder.replace('*', '')}`, 'error')
+                return true
             }
             
-            return true;
-        },
-
-        isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        },
-
-        resetForm() {
-            // Reset form data dựa trên cấu hình formFields
-            this.formFields.forEach(field => {
-                this.formData[field.name] = '';
-            });
-        },
-
-        showNotification(message, type = 'info') {
-            // Simple notification - you can replace with a proper notification library
-            alert(message);
-        }
-    },
-
-    mounted() {
-        // Set minimum date to today for appointment date input
-        const today = new Date().toISOString().split('T')[0];
-        const dateInput = document.querySelector('input[type="date"]');
-        if (dateInput) {
-            dateInput.setAttribute('min', today);
-        }
+            if (field.type === 'email' && !isValidEmail(value)) {
+                showNotification('Email không hợp lệ', 'error')
+                return true
+            }
+            
+            if (field.type === 'date') {
+                const selectedDate = new Date(value)
+                const today = new Date()
+                today.setHours(0, 0, 0, 0)
+                if (selectedDate < today) {
+                    showNotification('Ngày hẹn phải từ hôm nay trở đi', 'error')
+                    return true
+                }
+            }
+            
+            return false
+        })
+        
+        return false
     }
-};
+    
+    return true
+}
+
+const resetForm = () => {
+    formFields.value.forEach(field => {
+        formData.value[field.name] = ''
+    })
+}
+
+const showNotification = (message, type = 'info') => {
+    // Simple notification - you can replace with a proper notification library
+    alert(message)
+}
+
+const submitForm = async () => {
+    // Validate form
+    if (!validateForm()) {
+        return
+    }
+
+    isSubmitting.value = true
+
+    try {
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 2000))
+        
+        // Success message
+        showNotification('Đặt lịch thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.', 'success')
+        
+        // Reset form
+        resetForm()
+        
+    } catch (error) {
+        console.error('Error submitting form:', error)
+        showNotification('Có lỗi xảy ra, vui lòng thử lại sau.', 'error')
+    } finally {
+        isSubmitting.value = false
+    }
+}
+
+// Lifecycle
+onMounted(() => {
+    // Set minimum date to today for appointment date input
+    const today = new Date().toISOString().split('T')[0]
+    const dateInput = document.querySelector('input[type="date"]')
+    if (dateInput) {
+        dateInput.setAttribute('min', today)
+    }
+})
 </script>
 
 <style></style>

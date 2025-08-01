@@ -1,9 +1,9 @@
 <template>
   <div
     id="pxl-sidebar-area"
-    class="w-full px-4 pt-0 pl-0 lg:w-3/12 pxl-sidebar-area pxl-sidebar-blog lg:pt-0 lg:pl-2"
+    class="w-full pt-0 pl-0 lg:w-3/12 pxl-sidebar-area pxl-sidebar-blog lg:pt-0 lg:pl-2"
   >
-    <div class="pxl-sidebar-sticky sticky top-[40px]">
+    <div class="pxl-sidebar-sticky sticky top-[40px] pl-[10px]">
       <!-- Search -->
       <section id="search-1" class="widget widget_search mb-[35px] border-none p-0">
         <div class="widget-content">
@@ -11,7 +11,7 @@
             role="search"
             method="get"
             class="search-form"
-            @submit.prevent="onSearch"
+            @submit.prevent
           >
             <div class="relative searchform-wrap">
               <input
@@ -58,7 +58,7 @@
               <a
                 href="#"
                 @click.prevent="onFilterCategory(category.slug)"
-                :class="selectedCategory === category.slug ? 'text-[#2AD2C1]' : 'text-[#6F7F90]'"
+                :class="isCategorySelected(category) ? 'text-[#2AD2C1]' : 'text-[#6F7F90]'"
                 class="block text-[17px] font-normal leading-[27px] py-[10px] relative hover:text-[#2AD2C1] transition-colors cursor-pointer"
               >
                 {{ category.name }}
@@ -137,9 +137,9 @@
 
 <script setup>
 import { ref, watch } from 'vue'
+
 const props = defineProps({
   searchQuery: String,
-  onSearch: Function,
   categories: Array,
   selectedCategory: String,
   onFilterCategory: Function,
@@ -152,5 +152,18 @@ const props = defineProps({
 // Để v-model hoạt động 2 chiều với searchQuery prop
 const searchQueryProxy = ref(props.searchQuery)
 watch(() => props.searchQuery, (val) => { searchQueryProxy.value = val })
-watch(searchQueryProxy, (val) => { if (val !== props.searchQuery) props.onSearch && props.onSearch({ target: { value: val }, preventDefault: () => {} }) })
+
+// Emit event khi searchQuery thay đổi
+const emit = defineEmits(['update:searchQuery'])
+
+watch(searchQueryProxy, (val) => { 
+  if (val !== props.searchQuery) {
+    emit('update:searchQuery', val)
+  }
+})
+
+// Method để kiểm tra category nào đang được chọn
+const isCategorySelected = (category) => {
+  return props.selectedCategory === category.id?.toString()
+}
 </script>
