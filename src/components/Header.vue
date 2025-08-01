@@ -43,13 +43,13 @@
     <header class="w-full bg-white">
         <div class="max-w-[1920px] mx-auto flex items-center justify-between px-2 lg:px-8 py-4">
             <!-- Logo -->
-            <a href="/" class="flex items-center min-w-[220px]">
+            <router-link to="/" class="flex items-center min-w-[220px]">
                 <img
                     src="https://ytetot.monamedia.net/wp-content/uploads/2024/11/1-e1730690836792.png"
                     alt="Logo"
                     class="object-contain w-auto h-10"
                 />
-            </a>
+            </router-link>
 
             <!-- Hamburger Button -->
             <button
@@ -89,10 +89,14 @@
             <nav class="hidden xl:flex justify-center flex-1">
                 <ul class="flex gap-8 items-center text-[#23336A] font-semibold text-base">
                     <li>
-                        <a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Trang chủ</a>
+                        <router-link to="/" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300"
+                            >Trang chủ</router-link
+                        >
                     </li>
                     <li>
-                        <a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Giới thiệu</a>
+                        <router-link to="/about" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300"
+                            >Giới thiệu</router-link
+                        >
                     </li>
                     <li class="relative group">
                         <a
@@ -155,10 +159,14 @@
                         >
                     </li>
                     <li>
-                        <a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Kiến thức</a>
+                        <router-link to="/blog" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300"
+                            >Kiến thức</router-link
+                        >
                     </li>
                     <li>
-                        <a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300">Liên hệ</a>
+                        <router-link to="contact" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300"
+                            >Liên hệ</router-link
+                        >
                     </li>
                 </ul>
             </nav>

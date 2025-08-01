@@ -10,7 +10,7 @@ const routes = [
     { path: '/about', component: AboutPage },
     { path: '/blog', component: KnowledgePage },
     { path: '/blog/:id', component: ArticleDetailPage },
-    { path: '/contact', component: ContactPage }
+    { path: '/contact', component: ContactPage },
 ];
 
 const router = createRouter({
