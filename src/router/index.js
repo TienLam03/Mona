@@ -4,6 +4,8 @@ import AboutPage from '../pages/AboutPage/AboutPage.vue';
 import KnowledgePage from '../pages/KnowledgePage/KnowledgePage.vue';
 import ContactPage from '../pages/ContactPage/ContactPage.vue';
 import ArticleDetailPage from '../pages/KnowledgePage/ArticleDetailPage.vue';
+import CustomerPage from '../pages/CustomerPage/CustomerPage.vue';
+import ServicePage from '../pages/ServicePage/ServicePage.vue';
 
 const routes = [
     { path: '/', component: HomePage },
@@ -11,6 +13,8 @@ const routes = [
     { path: '/blog', component: KnowledgePage },
     { path: '/blog/:id', component: ArticleDetailPage },
     { path: '/contact', component: ContactPage },
+    { path: '/customer', component: CustomerPage },
+    { path: '/service', component: ServicePage },
 ];
 
 const router = createRouter({

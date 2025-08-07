@@ -110,10 +110,10 @@
                             class="absolute left-0 top-full mt-2 min-w-[210px] bg-white shadow-lg rounded py-2 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all z-30"
                         >
                             <li>
-                                <a
-                                    href="#"
+                                <router-link
+                                    to="/service"
                                     class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition"
-                                    >Trám Răng Thẩm Mỹ</a
+                                    >Trám Răng Thẩm Mỹ</router-link
                                 >
                             </li>
                             <li>
@@ -154,8 +154,8 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300"
-                            >Hướng dẫn khách hàng</a
+                        <router-link to="/customer" class="nav-link hover:text-[#2AD2C1] transition-colors duration-300"
+                            >Hướng dẫn khách hàng</router-link
                         >
                     </li>
                     <li>

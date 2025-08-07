@@ -1,18 +1,26 @@
 // vite.config.js
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, 'src'),
+    plugins: [vue()],
+    resolve: {
+        alias: {
+            '@': resolve(__dirname, 'src'),
+        },
     },
-  },
-  server: {
-    port: 5173,
-    host: true,
-  },
-})
+    server: {
+        port: 5173,
+        host: true,
+
+        proxy: {
+            '/api': {
+                target: 'https://api.simcard.tektra.vn',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api/, ''),
+            },
+        },
+    },
+});
