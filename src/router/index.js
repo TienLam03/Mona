@@ -6,6 +6,8 @@ import ContactPage from '../pages/ContactPage/ContactPage.vue';
 import ArticleDetailPage from '../pages/KnowledgePage/ArticleDetailPage.vue';
 import CustomerPage from '../pages/CustomerPage/CustomerPage.vue';
 import ServicePage from '../pages/ServicePage/ServicePage.vue';
+import ServicesList from '../pages/ServicePage/ServicesList.vue';
+import ServiceDetailPage from '../pages/ServicePage/ServiceDetailPage.vue';
 
 const routes = [
     { path: '/', component: HomePage },
@@ -14,7 +16,8 @@ const routes = [
     { path: '/blog/:id', component: ArticleDetailPage },
     { path: '/contact', component: ContactPage },
     { path: '/customer', component: CustomerPage },
-    { path: '/service', component: ServicePage },
+    { path: '/service', component: ServicesList },
+    { path: '/service/:slug', component: ServiceDetailPage },
 ];
 
 const router = createRouter({

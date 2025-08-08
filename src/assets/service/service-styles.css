@@ -1,0 +1,157 @@
+/* Import Fonts */
+@font-face {
+  font-family: 'icomoon';
+  src: url('./fonts/icomoon.eot-ei7olu');
+  src: url('./fonts/icomoon.eot-ei7olu#iefix') format('embedded-opentype'),
+       url('./fonts/icomoon.ttf-ei7olu') format('truetype'),
+       url('./fonts/icomoon.woff-ei7olu') format('woff'),
+       url('./fonts/icomoon.svg-ei7olu#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'icofont';
+  src: url('./fonts/icofont.eot');
+  src: url('./fonts/icofont.eot#iefix') format('embedded-opentype'),
+       url('./fonts/icofont.ttf') format('truetype'),
+       url('./fonts/icofont.woff') format('woff'),
+       url('./fonts/icofont.woff2') format('woff2'),
+       url('./fonts/icofont.svg#icofont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'caseicon';
+  src: url('./fonts/caseicon.eot');
+  src: url('./fonts/caseicon.eot#iefix') format('embedded-opentype'),
+       url('./fonts/caseicon.ttf') format('truetype'),
+       url('./fonts/caseicon.woff') format('woff'),
+       url('./fonts/caseicon.woff2') format('woff2'),
+       url('./fonts/caseicon.svg#caseicon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'fa-solid';
+  src: url('./fonts/fa-solid-900.eot');
+  src: url('./fonts/fa-solid-900.eot#iefix') format('embedded-opentype'),
+       url('./fonts/fa-solid-900.ttf') format('truetype'),
+       url('./fonts/fa-solid-900.woff') format('woff'),
+       url('./fonts/fa-solid-900.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'fa-regular';
+  src: url('./fonts/fa-regular-400.eot');
+  src: url('./fonts/fa-regular-400.eot#iefix') format('embedded-opentype'),
+       url('./fonts/fa-regular-400.ttf') format('truetype'),
+       url('./fonts/fa-regular-400.woff') format('woff'),
+       url('./fonts/fa-regular-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Icon Classes */
+[class^="icomoon-"], [class*=" icomoon-"] {
+  font-family: 'icomoon' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icofont-"], [class*=" icofont-"] {
+  font-family: 'icofont' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="caseicon-"], [class*=" caseicon-"] {
+  font-family: 'caseicon' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="fa-"], [class*=" fa-"] {
+  font-family: 'fa-solid' !important;
+  font-style: normal;
+  font-weight: 900;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Specific Icon Codes */
+.icomoon-patholab-17:before {
+  content: "\e900";
+}
+
+.icomoon-patholab-7:before {
+  content: "\e901";
+}
+
+.icomoon-patholab-phone3:before {
+  content: "\e902";
+}
+
+.icofont-star:before {
+  content: "\e900";
+}
+
+.icofont-plus:before {
+  content: "\e901";
+}
+
+.caseicon-map:before {
+  content: "\e900";
+}
+
+.caseicon-time:before {
+  content: "\e901";
+}
+
+.fa-envelope:before {
+  content: "\f0e0";
+}
+
+.fa-chevron-down:before {
+  content: "\f078";
+}
+
+/* Font Awesome Regular */
+.far {
+  font-family: 'fa-regular' !important;
+  font-weight: 400;
+}
+
+/* Font Awesome Light */
+.fal {
+  font-family: 'fa-solid' !important;
+  font-weight: 300;
+}
+
+/* Font Awesome Brands */
+.fab {
+  font-family: 'fa-solid' !important;
+  font-weight: 400;
+}
