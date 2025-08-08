@@ -48,6 +48,45 @@ class ApiService {
     }
   }
 
+  // Services API
+  async getServices() {
+    console.log('🏥 Fetching all services...');
+    return this.request('/services');
+  }
+
+  async getService(id) {
+    console.log('🏥 Fetching service with ID:', id);
+    return this.request(`/services/${id}`);
+  }
+
+  async getServiceBySlug(slug) {
+    console.log('🏥 Fetching service with slug:', slug);
+    return this.request(`/services/slug/${slug}`);
+  }
+
+  async createService(serviceData) {
+    console.log('➕ Creating new service:', serviceData);
+    return this.request('/services', {
+      method: 'POST',
+      body: JSON.stringify(serviceData),
+    });
+  }
+
+  async updateService(id, serviceData) {
+    console.log('✏️ Updating service with ID:', id, 'Data:', serviceData);
+    return this.request(`/services/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(serviceData),
+    });
+  }
+
+  async deleteService(id) {
+    console.log('🗑️ Deleting service with ID:', id);
+    return this.request(`/services/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
   // Posts API
   async getPosts() {
     console.log('📋 Fetching all posts...');
