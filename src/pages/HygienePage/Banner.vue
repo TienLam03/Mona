@@ -8,7 +8,7 @@
 
         <!-- Nội dung -->
         <div class="relative z-20 flex flex-col justify-center items-center h-full px-4">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Nhổ răng khôn</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Niềng răng thẩm mỹ</h1>
             <div class="text-base md:text-lg flex items-center gap-2">
                 <span>TRANG CHỦ</span>
                 <span class="text-white/70">›</span>

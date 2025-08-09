@@ -125,14 +125,14 @@
                             </li>
                             <li>
                                 <router-link
-                                    to="/service"
+                                    to="/brace"
                                     class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition"
                                     >Nhổ Răng Khôn</router-link
                                 >
                             </li>
                             <li>
                                 <router-link
-                                    to="/service"
+                                    to="/hygiene"
                                     class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition"
                                     >Vệ Sinh Răng Miệng</router-link
                                 >

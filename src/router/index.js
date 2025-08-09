@@ -7,6 +7,7 @@ import ArticleDetailPage from '../pages/KnowledgePage/ArticleDetailPage.vue';
 import CustomerPage from '../pages/CustomerPage/CustomerPage.vue';
 import ServicePage from '../pages/ServicePage/ServicePage.vue';
 import BracePage from '../pages/BracePage/BracePage.vue';
+import HygienePage from '../pages/HygienePage/HygienePage.vue';
 
 const routes = [
     { path: '/', component: HomePage },
@@ -17,6 +18,7 @@ const routes = [
     { path: '/customer', component: CustomerPage },
     { path: '/service', component: ServicePage },
     { path: '/brace', component: BracePage },
+    { path: '/hygiene', component: HygienePage },
 ];
 
 const router = createRouter({
