@@ -117,38 +117,38 @@
                                 >
                             </li>
                             <li>
-                                <a
-                                    href="#"
+                                <router-link
+                                    to="/brace"
                                     class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition"
-                                    >Niềng răng thẩm mỹ</a
+                                    >Niềng răng thẩm mỹ</router-link
                                 >
                             </li>
                             <li>
-                                <a
-                                    href="#"
+                                <router-link
+                                    to="/service"
                                     class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition"
-                                    >Nhổ Răng Khôn</a
+                                    >Nhổ Răng Khôn</router-link
                                 >
                             </li>
                             <li>
-                                <a
-                                    href="#"
+                                <router-link
+                                    to="/service"
                                     class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition"
-                                    >Vệ Sinh Răng Miệng</a
+                                    >Vệ Sinh Răng Miệng</router-link
                                 >
                             </li>
                             <li>
-                                <a
-                                    href="#"
+                                <router-link
+                                    to="/service"
                                     class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition"
-                                    >Khám Răng Tổng Quát</a
+                                    >Khám Răng Tổng Quát</router-link
                                 >
                             </li>
                             <li>
-                                <a
-                                    href="#"
+                                <router-link
+                                    to="/service"
                                     class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition"
-                                    >Điều Trị Viêm Nướu</a
+                                    >Điều Trị Viêm Nướu</router-link
                                 >
                             </li>
                         </ul>
