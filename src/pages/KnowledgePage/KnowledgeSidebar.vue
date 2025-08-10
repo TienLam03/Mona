@@ -17,7 +17,7 @@
                                 type="submit"
                                 class="search-submit absolute top-0 right-[-1px] w-[49px] h-[49px] flex items-center justify-center bg-gradient-to-r from-[#24B7D3] to-[#30EFAD] text-white rounded-full hover:from-[#30EFAD] hover:to-[#24B7D3] transition-all"
                             >
-                                <i class="icofont icofont-search-1 text-white text-[18px]"></i>
+                                <i class="fas fa-search text-white text-[18px]"></i>
                             </button>
                         </div>
                     </form>
