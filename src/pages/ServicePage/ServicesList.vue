@@ -93,4 +93,3 @@ import { getAllServices } from '@/data/services'
 
 const services = getAllServices()
 </script>
-

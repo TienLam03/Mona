@@ -15,12 +15,13 @@ export default defineConfig({
         port: 5173,
         host: true,
 
-        proxy: {
-            '/api': {
-                target: 'https://api.simcard.tektra.vn',
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api/, ''),
-            },
-        },
+        // Commented out proxy to avoid conflicts with local backend API
+        // proxy: {
+        //     '/api': {
+        //         target: 'https://api.simcard.tektra.vn',
+        //         changeOrigin: true,
+        //         rewrite: (path) => path.replace(/^\/api/, ''),
+        //     },
+        // },
     },
 });

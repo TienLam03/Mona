@@ -16,7 +16,8 @@ const routes = [
     { path: '/blog/:id', component: ArticleDetailPage },
     { path: '/contact', component: ContactPage },
     { path: '/customer', component: CustomerPage },
-    { path: '/service', component: ServicesList },
+    { path: '/service', component: ServicePage },
+    { path: '/services', component: ServicesList },
     { path: '/service/:slug', component: ServiceDetailPage },
 ];
 
