@@ -16,7 +16,7 @@ export const servicesData = [
     advantages: [
       'Bảo vệ răng khỏi vi khuẩn',
       'Thẩm mỹ cao, màu sắc tự nhiên',
-      'Thời gian thực hiện nhanh chóng',
+      'Thời gian thực hiện nhanh chóng 1234',
       'Chi phí hợp lý'
     ],
     processSteps: [
