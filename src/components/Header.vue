@@ -111,42 +111,42 @@
                         >
                             <li>
                                 <router-link
-                                    to="/service"
+                                    to="/service/tram-rang-tham-my"
                                     class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition"
                                     >Trám Răng Thẩm Mỹ</router-link
                                 >
                             </li>
                             <li>
                                 <router-link
-                                    to="/brace"
+                                    to="/service/nieng-rang-tham-my"
                                     class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition"
                                     >Niềng răng thẩm mỹ</router-link
                                 >
                             </li>
                             <li>
                                 <router-link
-                                    to="/brace"
+                                    to="/service/nho-rang-khon"
                                     class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition"
                                     >Nhổ Răng Khôn</router-link
                                 >
                             </li>
                             <li>
                                 <router-link
-                                    to="/hygiene"
+                                    to="/service/ve-sinh-rang-mieng"
                                     class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition"
                                     >Vệ Sinh Răng Miệng</router-link
                                 >
                             </li>
                             <li>
                                 <router-link
-                                    to="/service"
+                                    to="/service/kham-rang-tong-quat"
                                     class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition"
                                     >Khám Răng Tổng Quát</router-link
                                 >
                             </li>
                             <li>
                                 <router-link
-                                    to="/service"
+                                    to="/service/dieu-tri-viem-nuou"
                                     class="block px-6 py-2 text-[#23336A] hover:bg-[#E8F8F6] hover:text-[#2AD2C1] rounded transition"
                                     >Điều Trị Viêm Nướu</router-link
                                 >

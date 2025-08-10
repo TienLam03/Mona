@@ -140,11 +140,16 @@ import { usePosts } from '@/composables/usePosts';
 import { useCategories } from '@/composables/useCategories';
 import BlogArticle from '@/components/BlogArticle.vue';
 import KnowledgeSidebar from './KnowledgeSidebar.vue';
+import { useRouter, useRoute } from 'vue-router';
 
 // Use composables
-const { posts, loading, error, fetchPosts, fetchLatestPosts, searchPosts } = usePosts();
+const { posts, loading, error, fetchPosts, fetchLatestPosts, searchPosts, fetchPostsCountByCategory } = usePosts();
 
 const { categories: apiCategories, fetchCategories } = useCategories();
+
+// Router
+const router = useRouter();
+const route = useRoute();
 
 // Reactive data
 const searchQuery = ref('');
@@ -153,52 +158,61 @@ const itemsPerPage = ref(3);
 const selectedCategory = ref('all');
 
 // Categories data - will be populated from API
-const categories = ref([
-    { name: 'Genetics', slug: 'genetics', count: 0 },
-    { name: 'Neuroscience', slug: 'neuroscience', count: 0 },
-    { name: 'Nutrition', slug: 'nutrition', count: 0 },
-    { name: 'Research', slug: 'research', count: 0 },
-]);
+const categories = ref([]);
 
 // Recent posts data - will be populated from API
 const recentPosts = ref([]);
 
-// Tags data
-const tags = ref([
-    'AI SCIENCE',
-    'RESEARCH',
-    'NUTRITION',
-    'GENETICS',
-    'NEUROSCIENCE',
-    'HEALTHCARE',
-    'MEDICINE',
-    'TECHNOLOGY',
-]);
+// Tags data - sẽ được tạo động từ nội dung bài viết
+const tags = ref([]);
 
 // All articles data - will be populated from API
 const allArticles = ref([]);
 
+// Category counts cache
+const categoryCounts = ref({});
+
 // Computed properties
 const filteredArticles = computed(() => {
     let filtered = allArticles.value;
+    console.log('🔍 Filtering articles. Total articles:', filtered.length);
+    console.log('🔍 Current search query:', searchQuery.value);
+    console.log('🔍 Current selected category:', selectedCategory.value);
 
     // Filter by search query
     if (searchQuery.value.trim()) {
         const query = searchQuery.value.toLowerCase();
         filtered = filtered.filter(
             (article) =>
-                article.tittle?.toLowerCase().includes(query) ||
+                article.title?.toLowerCase().includes(query) ||
                 article.content?.toLowerCase().includes(query) ||
                 article.author?.toLowerCase().includes(query),
         );
+        console.log('🔍 After search filter:', filtered.length, 'articles');
     }
 
     // Filter by category
     if (selectedCategory.value !== 'all') {
         filtered = filtered.filter((article) => {
-            const categoryIds = Array.isArray(article.category_id) ? article.category_id : [article.category_id];
-            return categoryIds.includes(parseInt(selectedCategory.value));
+            // Đảm bảo category_id là array và chứa selectedCategory
+            const categoryIds = Array.isArray(article.category_id) 
+                ? article.category_id 
+                : [article.category_id];
+            
+            const hasCategory = categoryIds.some(catId => 
+                catId && catId.toString() === selectedCategory.value.toString()
+            );
+            
+            console.log('🔍 Article category check:', {
+                articleId: article._id,
+                articleCategories: categoryIds,
+                selectedCategory: selectedCategory.value,
+                hasCategory: hasCategory
+            });
+            
+            return hasCategory;
         });
+        console.log('🔍 After category filter:', filtered.length, 'articles');
     }
 
     return filtered;
@@ -214,16 +228,26 @@ const totalPages = computed(() => {
     return Math.ceil(filteredArticles.value.length / itemsPerPage.value);
 });
 
+// Watch route changes to sync with URL
+watch(() => route.query.category, (newCategory) => {
+    if (newCategory && newCategory !== selectedCategory.value) {
+        filterByCategory(newCategory);
+    } else if (!newCategory && selectedCategory.value !== 'all') {
+        selectedCategory.value = 'all';
+        currentPage.value = 1;
+    }
+}, { immediate: true });
+
+// Watch searchQuery để reset page khi search
+watch(searchQuery, () => {
+    currentPage.value = 1;
+});
+
 // Watch filteredArticles to reset currentPage if needed
 watch(filteredArticles, () => {
     if (currentPage.value > totalPages.value && totalPages.value > 0) {
         currentPage.value = 1;
     }
-});
-
-// Watch searchQuery để reset page khi search
-watch(searchQuery, () => {
-    currentPage.value = 1;
 });
 
 // Tối ưu hóa logic phân trang
@@ -248,18 +272,31 @@ const paginationPages = computed(() => {
 
 // Methods
 const filterByCategory = (categorySlug) => {
+    console.log('🔍 filterByCategory called with slug:', categorySlug);
+    
     // Tìm category ID từ slug
     if (categorySlug === 'all') {
         selectedCategory.value = 'all';
     } else {
         const category = categories.value.find((cat) => cat.slug === categorySlug);
         if (category) {
-            selectedCategory.value = category.id.toString();
+            selectedCategory.value = category.id;
+            console.log('✅ Category found, setting selectedCategory to ID:', category.id);
         } else {
+            console.log('⚠️ Category not found for slug:', categorySlug);
             selectedCategory.value = 'all';
         }
     }
     currentPage.value = 1; // Reset to first page when filtering
+    
+    // Update URL without navigation
+    const query = { ...route.query };
+    if (categorySlug === 'all') {
+        delete query.category;
+    } else {
+        query.category = categorySlug;
+    }
+    router.replace({ query });
 };
 
 const clearFilters = () => {
@@ -288,7 +325,7 @@ const transformArticleForDisplay = (article) => {
 
     const transformed = {
         id: article._id,
-        title: article.tittle || '(Không có tiêu đề)',
+        title: article.title || article.name || '(Không có tiêu đề)',
         link: `/blog/${article._id}`,
         image: article.image || '/vatchat.png',
         date: article.created_at ? new Date(article.created_at).toLocaleDateString('vi-VN') : '',
@@ -327,6 +364,41 @@ const getCategorySlug = (categoryId) => {
     return slug;
 };
 
+// Load category counts
+const loadCategoryCounts = async () => {
+    try {
+        console.log('📊 Loading category counts...');
+        const counts = {};
+        
+        // Load counts in parallel for better performance
+        const countPromises = categories.value.map(async (category) => {
+            try {
+                const count = await fetchPostsCountByCategory(category.id);
+                return { id: category.id, count };
+            } catch (err) {
+                console.error(`❌ Failed to get count for category ${category.name}:`, err);
+                return { id: category.id, count: 0 };
+            }
+        });
+        
+        const results = await Promise.all(countPromises);
+        results.forEach(({ id, count }) => {
+            counts[id] = count;
+        });
+        
+        categoryCounts.value = counts;
+        console.log('📊 Category counts loaded:', counts);
+    } catch (err) {
+        console.error('❌ Error loading category counts:', err);
+        // Set default counts to 0
+        const counts = {};
+        categories.value.forEach(cat => {
+            counts[cat.id] = 0;
+        });
+        categoryCounts.value = counts;
+    }
+};
+
 // Initialize data
 const initializeData = async () => {
     console.log('🚀 KnowledgePage: Starting data initialization...');
@@ -337,39 +409,87 @@ const initializeData = async () => {
 
         // Update allArticles with fetched posts
         console.log('💾 KnowledgePage: Updating allArticles with fetched posts');
-        allArticles.value = posts.value;
+        // CHUẨN HÓA category_id thành mảng string
+        allArticles.value = posts.value.map(post => ({
+            ...post,
+            category_id: Array.isArray(post.category_id)
+                ? post.category_id.map(id => id?.toString())
+                : post.category_id
+                    ? [post.category_id.toString()]
+                    : [],
+        }));
         console.log('📊 KnowledgePage: Total articles loaded:', allArticles.value.length);
+        console.log('📊 KnowledgePage: Sample article category_id:', allArticles.value[0]?.category_id);
 
-        // Update categories with API data and count
+        // Update categories with API data
         if (apiCategories.value.length > 0) {
-            // Đếm số lượng bài viết cho từng category
-            const categoryCounts = {};
-            posts.value.forEach((post) => {
-                const categoryIds = Array.isArray(post.category_id) ? post.category_id : [post.category_id];
-                categoryIds.forEach((catId) => {
-                    if (catId) {
-                        categoryCounts[catId] = (categoryCounts[catId] || 0) + 1;
-                    }
-                });
-            });
-
             categories.value = apiCategories.value.map((cat) => ({
-                id: cat._id,
+                id: cat._id.toString(),
                 name: cat.name,
                 slug: cat.name.toLowerCase().replace(/\s+/g, '-'),
-                count: categoryCounts[cat._id] || 0,
+                count: 0, // Will be updated by loadCategoryCounts
             }));
             console.log('📁 KnowledgePage: Categories updated:', categories.value);
+            
+            // Load category counts
+            await loadCategoryCounts();
+            
+            // Update categories with counts
+            categories.value = categories.value.map(cat => ({
+                ...cat,
+                count: categoryCounts.value[cat.id] || 0
+            }));
         } else {
             console.log('⚠️ KnowledgePage: No categories found in API response');
+            // Fallback to default categories if API doesn't return any
+            categories.value = [
+                { id: 'genetics', name: 'Genetics', slug: 'genetics', count: 0 },
+                { id: 'neuroscience', name: 'Neuroscience', slug: 'neuroscience', count: 0 },
+                { id: 'nutrition', name: 'Nutrition', slug: 'nutrition', count: 0 },
+                { id: 'research', name: 'Research', slug: 'research', count: 0 },
+            ];
         }
+
+        // Generate tags from post content
+        const tagCounts = {};
+        posts.value.forEach((post) => {
+            if (post.content) {
+                // Extract common medical/healthcare terms
+                const content = post.content.toLowerCase();
+                const commonTags = [
+                    'y học', 'sức khỏe', 'bệnh', 'điều trị', 'thuốc', 'bác sĩ', 'bệnh viện',
+                    'phòng khám', 'chẩn đoán', 'phẫu thuật', 'phục hồi', 'dinh dưỡng',
+                    'thể dục', 'phòng bệnh', 'tiêm chủng', 'xét nghiệm', 'chụp x-quang',
+                    'siêu âm', 'mri', 'ct scan', 'nội soi', 'sinh thiết', 'hóa trị',
+                    'xạ trị', 'ghép tạng', 'tế bào gốc', 'gen', 'di truyền', 'miễn dịch',
+                    'viêm', 'nhiễm trùng', 'ung thư', 'tim mạch', 'hô hấp', 'tiêu hóa',
+                    'thần kinh', 'tâm thần', 'da liễu', 'mắt', 'tai mũi họng', 'răng hàm mặt',
+                    'xương khớp', 'nội tiết', 'sản phụ khoa', 'nhi khoa', 'lão khoa'
+                ];
+                
+                commonTags.forEach(tag => {
+                    if (content.includes(tag)) {
+                        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+                    }
+                });
+            }
+        });
+
+        // Convert to array and sort by frequency
+        tags.value = Object.entries(tagCounts)
+            .map(([tag, count]) => ({ tag, count }))
+            .sort((a, b) => b.count - a.count)
+            .slice(0, 15) // Top 15 tags
+            .map(item => item.tag.toUpperCase());
+        
+        console.log('🏷️ KnowledgePage: Tags generated:', tags.value);
 
         // Fetch recent posts
         console.log('🆕 KnowledgePage: Fetching recent posts for sidebar...');
         const latestPosts = await fetchLatestPosts(3);
         recentPosts.value = latestPosts.map((post) => ({
             id: post._id,
-            title: post.tittle || post.name,
+            title: post.title || post.name,
             link: `/blog/${post._id}`,
             image: '/vatchat.png',
             date: post.created_at
@@ -381,13 +501,17 @@ const initializeData = async () => {
         console.log('🆕 KnowledgePage: Recent posts loaded:', recentPosts.value);
     } catch (err) {
         console.error('❌ KnowledgePage: Error initializing data:', err);
+        error.value = `Không thể tải dữ liệu: ${err.message}`;
     }
 };
 
 // Lifecycle
 onMounted(() => {
     console.log('🎯 KnowledgePage: Component mounted');
-    initializeData();
+    // Add a small delay to avoid overwhelming the API
+    setTimeout(() => {
+        initializeData();
+    }, 100);
 });
 
 // Export for template access

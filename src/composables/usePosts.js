@@ -183,7 +183,7 @@ export function usePosts() {
     
     const searchTerm = query.toLowerCase()
     const filtered = posts.value.filter(post => 
-      post.name?.toLowerCase().includes(searchTerm) ||
+      post.title?.toLowerCase().includes(searchTerm) ||
       post.content?.toLowerCase().includes(searchTerm) ||
       post.author?.toLowerCase().includes(searchTerm)
     )

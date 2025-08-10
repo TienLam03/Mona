@@ -17,7 +17,7 @@
                                 type="submit"
                                 class="search-submit absolute top-0 right-[-1px] w-[49px] h-[49px] flex items-center justify-center bg-gradient-to-r from-[#24B7D3] to-[#30EFAD] text-white rounded-full hover:from-[#30EFAD] hover:to-[#24B7D3] transition-all"
                             >
-                                <i class="icofont icofont-search-1 text-white text-[18px]"></i>
+                                <i class="fas fa-search text-white text-[18px]"></i>
                             </button>
                         </div>
                     </form>
@@ -145,28 +145,18 @@ const props = defineProps({
 // Để v-model hoạt động 2 chiều với searchQuery prop
 const searchQueryProxy = ref(props.searchQuery);
 
-const categoryCounts = ref([
-    {
-        id: 1,
-        name: 'Genetics',
-        toal: 0,
-    },
-    {
-        id: 2,
-        name: 'Neuroscience',
-        toal: 0,
-    },
-    {
-        id: 3,
-        name: 'Nutrition',
-        toal: 0,
-    },
-    {
-        id: 4,
-        name: 'Research',
-        toal: 0,
-    },
-]);
+const categoryCounts = computed(() => {
+    if (!props.categories || props.categories.length === 0) {
+        return [];
+    }
+    
+    return props.categories.map(cat => ({
+        id: cat.id,
+        name: cat.name,
+        slug: cat.slug,
+        total: cat.count || 0
+    }));
+});
 
 watch(
     () => props.searchQuery,
@@ -184,30 +174,17 @@ watch(searchQueryProxy, (val) => {
     }
 });
 
-watch(
-    () => props.allArticles,
-    (newVal) => {
-        const countMap = {};
+// Không cần watch này nữa vì categoryCounts đã là computed property
 
-        newVal.forEach((post) => {
-            post.category_id.forEach((catId) => {
-                countMap[catId] = (countMap[catId] || 0) + 1;
-            });
-        });
-
-        // Cập nhật lại total cho từng category
-        categoryCounts.value = categoryCounts.value.map((cat) => ({
-            ...cat,
-            total: countMap[cat.id] || 0,
-        }));
-    },
-    { immediate: true },
-);
-
-const totalArticles = computed(() => categoryCounts.value.reduce((sum, cat) => sum + cat.total, 0));
+const totalArticles = computed(() => {
+    if (!props.allArticles || props.allArticles.length === 0) {
+        return 0;
+    }
+    return props.allArticles.length;
+});
 
 // Method để kiểm tra category nào đang được chọn
 const isCategorySelected = (category) => {
-    return props.selectedCategory === category.id?.toString();
+    return props.selectedCategory === category.id?.toString() || props.selectedCategory === 'all';
 };
 </script>

@@ -48,6 +48,60 @@ class ApiService {
     }
   }
 
+  // Services API
+  async getServices() {
+    console.log('🏥 Fetching all services...');
+    try {
+      return await this.request('/services');
+    } catch (error) {
+      console.error('❌ Failed to fetch services:', error);
+      return [];
+    }
+  }
+
+  async getService(id) {
+    console.log('🏥 Fetching service with ID:', id);
+    try {
+      return await this.request(`/services/${id}`);
+    } catch (error) {
+      console.error('❌ Failed to fetch service:', error);
+      return null;
+    }
+  }
+
+  async getServiceBySlug(slug) {
+    console.log('🏥 Fetching service with slug:', slug);
+    try {
+      return await this.request(`/services/slug/${slug}`);
+    } catch (error) {
+      console.error('❌ Failed to fetch service by slug:', error);
+      return null;
+    }
+  }
+
+  async createService(serviceData) {
+    console.log('➕ Creating new service:', serviceData);
+    return this.request('/services', {
+      method: 'POST',
+      body: JSON.stringify(serviceData),
+    });
+  }
+
+  async updateService(id, serviceData) {
+    console.log('✏️ Updating service with ID:', id, 'Data:', serviceData);
+    return this.request(`/services/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(serviceData),
+    });
+  }
+
+  async deleteService(id) {
+    console.log('🗑️ Deleting service with ID:', id);
+    return this.request(`/services/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
   // Posts API
   async getPosts() {
     console.log('📋 Fetching all posts...');
@@ -95,17 +149,17 @@ class ApiService {
   // Categories API
   async getCategories() {
     console.log('📁 Fetching all categories...');
-    return this.request('/post-categories');
+    return this.request('/post.category');
   }
 
   async getCategory(id) {
     console.log('📂 Fetching category with ID:', id);
-    return this.request(`/post-categories/${id}`);
+    return this.request(`/post.category/${id}`);
   }
 
   async createCategory(categoryData) {
     console.log('➕ Creating new category:', categoryData);
-    return this.request('/post-categories', {
+    return this.request('/post.category', {
       method: 'POST',
       body: JSON.stringify(categoryData),
     });
@@ -113,7 +167,7 @@ class ApiService {
 
   async updateCategory(id, categoryData) {
     console.log('✏️ Updating category with ID:', id, 'Data:', categoryData);
-    return this.request(`/post-categories/${id}`, {
+    return this.request(`/post.category/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(categoryData),
     });
@@ -121,7 +175,7 @@ class ApiService {
 
   async deleteCategory(id) {
     console.log('🗑️ Deleting category with ID:', id);
-    return this.request(`/post-categories/${id}`, {
+    return this.request(`/post.category/${id}`, {
       method: 'DELETE',
     });
   }
@@ -129,12 +183,12 @@ class ApiService {
   // Comments API
   async getComments(postId) {
     console.log('💬 Fetching comments for post ID:', postId);
-    return this.request(`/post-comments?postId=${postId}`);
+    return this.request(`/posts/${postId}/comments`);
   }
 
   async createComment(commentData) {
     console.log('➕ Creating new comment:', commentData);
-    return this.request('/post-comments', {
+    return this.request(`/posts/${commentData.postId}/comments`, {
       method: 'POST',
       body: JSON.stringify(commentData),
     });
@@ -142,15 +196,15 @@ class ApiService {
 
   async updateComment(id, commentData) {
     console.log('✏️ Updating comment with ID:', id, 'Data:', commentData);
-    return this.request(`/post-comments/${id}`, {
+    return this.request(`/posts/${commentData.postId}/comments/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(commentData),
     });
   }
 
-  async deleteComment(id) {
+  async deleteComment(id, postId) {
     console.log('🗑️ Deleting comment with ID:', id);
-    return this.request(`/post-comments/${id}`, {
+    return this.request(`/posts/${postId}/comments/${id}`, {
       method: 'DELETE',
     });
   }
