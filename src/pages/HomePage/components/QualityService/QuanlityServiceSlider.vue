@@ -28,31 +28,34 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
+import Ban from '@/assets/img/ban.png'
+import Ghe from '@/assets/img/ghe.png'
+import Vatchat from '@/assets/img/vatchat.png'
 
 const slides = [
     {
-        image: '../../public/ghe.png',
+        image: Ghe,
         label: 'Pathology',
         title: 'Translational Research',
     },
     {
-        image: '../../public/ban.png',
+        image: Ban,
         label: 'Technology',
         title: 'Digital Dentistry',
     },
 
     {
-        image: '../../public/vatchat.png',
+        image: Vatchat,
         label: 'Equipment',
         title: 'Advanced Tools',
     },
     {
-        image: '../../public/ghe.png',
+        image: Ban,
         label: 'Pathology',
         title: 'Translational Research',
     },
     {
-        image: '../../public/ban.png',
+        image: Ghe,
         label: 'Technology',
         title: 'Digital Dentistry',
     },

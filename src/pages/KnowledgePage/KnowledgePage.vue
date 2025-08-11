@@ -324,9 +324,9 @@ const transformArticleForDisplay = (article) => {
     const categoryObj = categories.value.find((cat) => cat.id === firstCategoryId);
 
     const transformed = {
-        id: article._id,
+        id: article.id,
         title: article.title || article.name || '(Không có tiêu đề)',
-        link: `/blog/${article._id}`,
+        link: `/blog/${article.id}`,
         image: article.image || '/vatchat.png',
         date: article.created_at ? new Date(article.created_at).toLocaleDateString('vi-VN') : '',
         author: article.author || 'Không rõ',
@@ -424,7 +424,7 @@ const initializeData = async () => {
         // Update categories with API data
         if (apiCategories.value.length > 0) {
             categories.value = apiCategories.value.map((cat) => ({
-                id: cat._id.toString(),
+                id: cat.id.toString(),
                 name: cat.name,
                 slug: cat.name.toLowerCase().replace(/\s+/g, '-'),
                 count: 0, // Will be updated by loadCategoryCounts

@@ -350,6 +350,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { usePosts } from '@/composables/usePosts'
 import { useCategories } from '@/composables/useCategories'
 import KnowledgeSidebar from './KnowledgeSidebar.vue'
+import vatchat from '@/assets/img/vatchat.png'
 
 const route = useRoute()
 const router = useRouter()
@@ -610,7 +611,7 @@ const getTagLink = (tag) => {
 
 const handleImageError = (event) => {
   console.log('🖼️ Image failed to load, using fallback');
-  event.target.src = '/vatchat.png';
+  event.target.src = vatchat;
 };
 
 const fetchCurrentPost = async () => {

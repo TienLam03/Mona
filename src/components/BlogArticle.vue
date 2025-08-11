@@ -14,7 +14,9 @@
                         :src="article.image"
                         :alt="article.title"
                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-100 scale-[1.01]"
-                    />
+                @error="handleImageError"
+                   
+                        />
                 </div>
             </router-link>
             <span
@@ -93,6 +95,8 @@
 </template>
 
 <script setup>
+import vatchat from '@/assets/img/vatchat.png'
+
 // Define props
 defineProps({
     article: {
@@ -106,6 +110,12 @@ defineProps({
         },
     },
 });
+
+const handleImageError = (event) => {
+  console.log('🖼️ Image failed to load, using fallback');
+  event.target.src = vatchat;
+};
+
 </script>
 
 <style scoped>
